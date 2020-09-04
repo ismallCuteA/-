@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function reverseStr(s) {
+      let arr = s.trim().split(" ");
+
+      console.log(arr);
+      for (let i = 0; i < arr.length; i++) {
+        let newStr = '';
+        for (let j = arr[i].length - 1; j >= 0; j--) {
+          newStr += arr[i][j]
+        }
+        arr[i] = newStr;
+      }
+      return arr.join(" ")
+    }
+    reverseStr("Let's take LeetCode contest")
+    console.log(reverseStr("Let's take LeetCode contest"));
+    document.write(reverseStr("Let's take LeetCode contest"))
+  </script>
+</body>
+
+</html>

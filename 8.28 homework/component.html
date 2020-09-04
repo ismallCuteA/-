@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <click-button></click-button>
+
+  </div>
+
+  <script>
+    // Vue.component
+    // 
+    // data(){
+    //   return{
+
+    //   }
+    // }
+    // @click=count++
+    Vue.component("click-button", {
+      data() {
+        return {
+          count: 0
+        }
+      },
+      template: `
+      <div>
+      <button @click="count++">组件点击了{{count}}次</button>
+    </div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

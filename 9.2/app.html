@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{count}}</p>
+    <cute @my-add="MyAdd"></cute>
+  </div>
+
+  <script>
+    Vue.component("cute", {
+        template: `
+        <button @click="add">deliver message by telegraph 电报</button>
+      `,
+        methods: {
+          add() {
+            this.$emit("my-add", {
+              num: 5,
+              name: "包包大人"
+            })
+          }
+        }
+      },
+
+    )
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        count: 0
+      },
+      methods: {
+        MyAdd(obj) {
+          this.count += obj.num;
+          console.log(obj)
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

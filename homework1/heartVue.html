@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      height: 100%
+    }
+
+    #app {
+      height: 100%;
+      position: relative;
+    }
+
+    .img {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-on:click="clickMethod">
+    <img src="your-heart.png" v-for="item in list" alt="" v-bind:style="item" class="img">
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        list: [],
+        timer: null
+      },
+      methods: {
+        //add in list css
+        clickMethod: function (e) {
+          let that = this;
+          that.list.push({
+            left: e.clientX - 25 + 'px',
+            top: e.clientY - 25 + 'px',
+            opacity: 1
+
+          })
+          if (!this.timer) {
+            this.timer = setInterval(function () {
+              for (let i = 0; i < that.list.length; i++) {
+                opacity = that.list[i].opacity;
+                opacity -= 0.01;
+                that.list[i].opacity = opacity;
+                if (that.list[i].opacity < 0) {
+                  that.list.splice(i, 1);
+                  i--;
+                }
+
+              }
+              if (that.list.length < 0) {
+                clearInterval(timer);
+                this.timer = null;
+              }
+            }, 17)
+          }
+        }
+
+      }
+    });
+  </script>
+</body>
+
+</html>

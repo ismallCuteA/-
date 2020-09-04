@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model原理</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- the two companies have been fused into a single organization 融合 -->
+    <input type="text" :value="message" @input="message=$event.target.value">
+    <!-- <input type="text" v-model="message"> -->
+    <p>{{message}}</p>
+    <!-- meet the requirement of the company 需求  $event.target.value-->
+    <input type="text" :value="message2" @input="message2=$event.target.value">
+    <p>{{message2}}</p>
+    <!-- precise instructions 明确的指示 -->
+    <input type="text" name="" v-model.lazy="msg" id="">
+    <p>{{msg}}</p>
+    <textarea name="" v-model="message" id="" cols="30" rows="10"></textarea>
+    <p>{{message}}</p>
+
+    <input type="checkbox" name="" id="checkbox" v-model="message">
+    <label for="checkbox">{{message}}</label>
+    <p>{{message}}</p>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "",
+        message2: '',
+        msg: ""
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <txt v-model="message"></txt>
+    <p>{{message}}</p>
+  </div>
+
+  <script>
+    Vue.component("txt", {
+      props: ['value'],
+      template: `
+      <div>
+      <div>输入框上面</div>
+      <input type="text" name=""  id="" :value="value" @input="$emit('input',$event.target.value)">
+      <div>输入框下面</div>
+
+    </div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'give me very expilicit routes on how to get there 明确的'
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

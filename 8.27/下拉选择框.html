@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <select name="" id="" V-MODEL="message">
+      <option disabled value="E">请选择</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+    <p>{{message}}</p>
+    <select name="" id="" v-model="message2" multiple width='50px'>
+      <option disabled value="E">请选择</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="racail equality 种族">racail equality</option>
+
+    </select>
+    <p>{{message2}}</p>
+    <input type="radio" name="ok" value="" v-model="message3" id="">
+    <input type="checkbox" name="no" value="" v-model="message3" true-value="ok" false-value="no" id="">
+    <p>{{message3}}</p>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: "E",
+        message2: [],
+        message3: ''
+      },
+      methods: {},
+
+    });
+  </script>
+</body>
+
+</html>

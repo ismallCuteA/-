@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="bxios.js"></script>
+</head>
+
+<body>
+  <script>
+    let url = "http://wthrcdn.etouch.cn/weather_mini?city=苏州";
+    bxios.get(url).then(function (response) {
+      console.log(response)
+    })
+  </script>
+</body>
+
+</html>

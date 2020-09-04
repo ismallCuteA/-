@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="message">
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '',
+        timer: null
+      },
+      methods: {},
+      watch: {
+        message(newVal) {
+          if (this.timer != null) {
+            clearTimeout(this.timer);
+            this.timer = null;
+          }
+          this.timer = setTimeout(function () {
+            let da = new Date();
+            let date = da.getTime();
+            let day = date.getDay();
+            let hour = date.getHours();
+
+            console.log(newVal);
+            console.log("发送请求" + date + day);
+          }, 1500)
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

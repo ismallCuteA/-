@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 800px;
+            height: 900px;
+        }
+
+        /* .tab-content {
+            width: 300%;
+        } */
+        .flex {
+            display: flex;
+            overflow: hidden;
+            transition: all 1.4s linear;
+            position: relative;
+            width: 800px;
+            height: 600px;
+        }
+
+        .flex_c {
+            width: 800px;
+            height: 30px;
+            background-color: rgb(140, 155, 72);
+        }
+
+        .flex_c p {
+            width: 176px;
+            height: 30px;
+            display: inline-block;
+
+        }
+
+        .content {
+            /* width: 1104px; */
+            flex-shrink: 0;
+        }
+
+        .tab-content p {
+
+            display: inline-block;
+            background-color: rgb(204, 89, 89);
+            width: 800px;
+            height: 600px;
+            flex: 1;
+        }
+
+        /* .tab-content {
+            overflow: hidden;
+        } */
+        .bigbox {
+            width: 3200px;
+            display: flex;
+            position: absolute;
+            transition: all 2s linear;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="flex_c">
+            <p style="margin-right:20px;" @click="tab('0')">切换</p>
+            <p style="margin-right:20px;" @click="tab('1')">切换</p>
+            <p style="margin-right:20px;" @click="tab('2')">切换</p>
+            <p style="margin-right:20px;" @click="tab('3')">切换</p>
+        </div>
+        <div class="flex tab-content">
+            <div class="bigbox" :style="sty">
+                <p class="content">这是内容这是内容1111111</p>
+                <p class="content">这是内容这是内容2222222</p>
+                <p class="content">这是内容这是内容3333333</p>
+                <p class="content">这是内容这是内容44444444</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var container = new Vue({
+            el: ".container",
+            data() {
+                return {
+                    value: '0'
+                };
+            },
+            computed: {
+                sty() {
+
+                    return {
+                        transform: "translateX(" + (-this.value * 800) + "px)"
+                    }
+                }
+
+            },
+            methods: {
+                tab(v) {
+                    this.value = v
+                }
+            },
+        })
+    </script>
+
+
+</body>
+
+</html>

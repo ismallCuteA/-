@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app"> </div>
+  <div id="app2">
+    <cute></cute>
+  </div>
+
+  <script>
+    Vue.component("cute", {
+      template: `
+      <div>mathematical formula 数学的</div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {}
+    });
+    var app2 = new Vue({
+      el: '#app2',
+      data: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

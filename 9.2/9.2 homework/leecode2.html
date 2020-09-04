@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function mostlyElemet(arr) {
+      let len = arr.length / 2;
+
+      let obj = arr.reduce(function (acc, cur) {
+        if (acc[cur]) {
+          acc[cur]++
+        } else {
+          acc[cur] = 1
+        }
+        return acc
+      }, {})
+      for (let x in obj) {
+        if (obj[x] > len) {
+          return x
+        }
+      }
+      return obj
+    }
+    console.log(mostlyElemet([1, 1, 1, 2, 3]))
+  </script>
+</body>
+
+</html>

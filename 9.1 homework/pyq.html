@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="bxios.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    #app {
+      height: 100%;
+      width: 666px;
+      margin: 0 auto;
+    }
+
+    .box1 {
+      /* height: 100%; */
+      width: 490px;
+      margin: 0 auto;
+    }
+
+    .middle img {
+      width: 100%;
+    }
+
+    .top img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .top img {
+      display: inline-block;
+
+    }
+
+    .top p {
+      display: inline-block;
+      /* line-height: 55px; */
+    }
+
+    .top {
+      height: 50px;
+      /* line-height: 50px; */
+      text-align: left;
+      float: left;
+      width: 666px;
+      vertical-align: top;
+      display: flex;
+      white-space: wrap;
+      text-overflow: ellipsis;
+      /* overflow: hidden; */
+    }
+
+    .top span {
+      display: block;
+      width: 450px;
+    }
+
+    .middle {
+      /* height: 600px; */
+      width: 450px;
+    }
+
+    .middle img {
+      /* width: 450px; */
+      height: 600px;
+      margin-left: 50px;
+      margin-top: 56px;
+    }
+
+    .down p {
+      display: inline-block;
+    }
+
+    .box1 {
+      margin-bottom: 18px;
+      /* border: 1px solid #333; */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+      width: 500px;
+      height: 828px;
+    }
+
+    .down {}
+
+    .middle {
+      height: 766px;
+    }
+
+    .p1 {
+      font-size: 14px;
+      color: #b0b0b0;
+    }
+
+    .p2 {
+      font-size: 16px;
+      float: right;
+      margin-right: 6px;
+    }
+
+    .pp {
+      color: #b0b0b0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <pyq v-for="(item,index) in list" :item="item" :index='index' :key="index"></pyq>
+  </div>
+
+  <script type="module">
+    import {mo} from "./pyqmodulepack/1.js"
+  
+    //创建Vue实 例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        list: []
+      },
+      methods: {},
+      created() {
+        let that = this;
+        bxios.get('https://api.apiopen.top/getJoke?page=1&count=10&type=image')
+          .then(function (response) {
+            console.log(JSON.parse(response));
+            let m = JSON.parse(response);
+            console.log(m.result)
+            that.list = m.result;
+          })
+      }
+    });
+  </script>
+</body>
+
+</html>

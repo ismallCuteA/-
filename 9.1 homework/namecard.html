@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  .message {
+    position: absolute;
+    right: 0;
+    top: 68px;
+    font-family: 楷体;
+    font-weight: bold;
+  }
+
+  #app {
+    height: 300px;
+    width: 550px;
+    margin: 300px auto;
+    background: url(name.jpg) no-repeat center center;
+    background-size: cover;
+
+    position: relative;
+  }
+
+  .pic {
+    position: absolute;
+    left: 104px;
+    top: 100px;
+    background: url(caj.jpg) center center;
+    background-size: cover;
+    width: 88px;
+    height: 88px;
+    z-index: 999;
+  }
+
+  .message div {
+    margin-top: 10px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div class="pic">
+
+    </div>
+
+    <div class="contaienr">
+      <div class="message">
+        <div>
+          <span>姓名：</span>
+          <span class="name">产爱军</span>
+        </div>
+        <div>
+          <span>手机：</span>
+
+          <span class="phone">666666</span>
+        </div>
+        <div><span>公司：</span>
+          <span class="company">合肥爱军北派传销无限公司</span></div>
+        <div>
+          <span>职位：</span>
+          <span class="job">传销头子</span>
+        </div>
+        <div>
+          <span>邮箱：</span>
+          <span class="email">aijun666@aj.com</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    Vue.component("box1", {
+      props: {}
+      template: `
+        
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

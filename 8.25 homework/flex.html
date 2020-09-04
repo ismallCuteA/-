@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .HD {
+      height: 600px;
+      width: 800px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    .container {
+      height: 600px;
+      width: 800px;
+      overflow: hidden;
+    }
+
+    .box {
+      height: 600px;
+      width: 800px;
+      /* flex: 1; */
+      flex-shrink: 0;
+
+    }
+
+    .item1 {
+      background-color: red;
+    }
+
+    .item11 {
+      background-color: yellow;
+    }
+
+    .item12 {
+      background-color: green;
+    }
+
+    .item13 {
+      background-color: aqua;
+    }
+
+    .item14 {
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="HD">
+        <div class="box item1"></div>
+        <div class="box item11"></div>
+        <div class="box item12"></div>
+        <div class="box item13"></div>
+        <div class="box item14"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

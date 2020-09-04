@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    .outer {
+      width: 500px;
+      height: 500px;
+      background-color: blue;
+
+    }
+
+    .inner {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="outer" @click="outer">
+      <div class="inner" @click.stop="inner">
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        outer() {
+          console.log("outer,shove as hard as she could 推")
+        },
+        inner() {
+          console.log('inner，the nuclear industry')
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

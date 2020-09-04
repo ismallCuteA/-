@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+
+</style>
+
+<body>
+  <div id="app">
+    <div class="location">
+      <select name="" id="" v-model="province">
+        <option value="" disabled>请选择：</option>
+        <option v-for="item in provinceList">{{item}}</option>
+      </select>
+      <select name="" id="" v-model="city">
+        <option value="" disabled>请选择：</option>
+        <option v-for="item in cityList">{{item}}</option>
+      </select>
+      <select name="" id="" v-model="location">
+        <option value="" disabled>请选择：</option>
+        <option v-for="item in locationList">{{item}}</option>
+      </select>
+    </div>
+    <div>{{province}}--{{city}}--{{location}}</div>
+
+  </div>
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        province: "江苏省",
+        provinceList: ["江苏省", "海南省"],
+        city: "苏州市",
+        cityList: ["苏州市", '南京市'],
+        location: "工业园区",
+        locationList: ['惠山区', '工业园区'],
+
+      },
+      methods: {},
+      watch: {
+        province(newVal) {
+          if (newVal == "海南省") {
+            this.city = '海口市';
+            this.cityList = ["海口市", "五指山市"]
+          } else if (newVal == "江苏省") {
+            this.cityList = ["苏州市", '南京市']
+            this.city = '苏州市';
+
+          }
+
+        },
+        city(newVal) {
+          if (newVal == "海口市") {
+            this.location = "秀英区"
+            this.locationList = ['秀英区', '龙华区']
+
+          }
+          if (newVal == "五指山市") {
+            this.locationList = ['毛杨镇', '南圣镇']
+            this.location = "毛杨镇"
+
+          }
+          if (newVal == "苏州市") {
+            this.locationList = ['惠山区', '工业园区']
+            this.location = "惠山区"
+
+          }
+          if (newVal == "南京市") {
+            this.locationList = ['玄武区', '栖霞区']
+            this.location = "玄武区"
+
+          }
+        }
+
+      }
+    });
+  </script>
+</body>
+
+</html>

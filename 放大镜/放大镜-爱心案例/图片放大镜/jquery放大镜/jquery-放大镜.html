@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery实现放大镜效果</title>
+        <style>
+            #contain{
+                width:80%;
+                height:500px;
+                margin:0 auto;
+            }
+            .left{
+                float:left;
+            }
+            .right{
+                float:left;
+                width:350px;
+                height:350px;
+                overflow:hidden;/*超出部分隐藏*/
+                padding:0px;
+                display:none;/*默认先不显示*/
+            }
+            .up{
+                width:320px;
+                height:200px;
+                padding:30px;
+            }
+            .up img{
+                width:320px;
+                height:200px;
+            }
+            .down{
+                padding:20px;
+                padding-left:35px;
+            }
+            .down img{
+                width:64px;
+                height:40px;
+                border:3px solid #ccc;
+            }
+        </style>
+        <script type="text/javascript" src="jquery-3.5.0.min.js" ></script>
+        
+    </head>
+    <body>
+        <div id="contain">
+            <div class="left">
+                <div class="up">
+                    <img src="img/01.jpg" bigimage>
+                </div>
+                <div class="down">
+                    <img src="img/01.jpg" smallimage>
+                    <img src="img/02.jpg" smallimage>
+                    <img src="img/03.jpg" smallimage>
+                    <img src="img/04.jpg" smallimage>
+                </div>
+            </div>
+            <div class="right">
+                <img src="" mirror>
+            </div>
+        </div>
+    </body>
+    <script>
+        /**
+         * 完成下面选择图片的效果：
+         *         1.当鼠标放置在下面的小图片时，改变边框属性
+         *         2.更改含有bigimage的img标签的src，进行图片更换
+         */
+        $("[smallimage]").mouseover(function(){
+            var address = $(this).css("border","3px solid red").attr("src");
+            $("[bigimage]").attr("src",address);
+        }).mouseout(function(){
+            $(this).css("border","3px solid #ccc");
+        });
+        /**
+         * 大图鼠标移动事件：
+         *         1.设置mirror所在的img标签的display属性为block，即让它显示
+         *         2.当鼠标在内部移动的时候，通过计算，在mirror中进行放大显示
+         * 鼠标移出事件：
+         *         设置mirror不可见 display:none
+         */
+        $("[bigimage]").mousemove(function(even){
+            //获取大图的相对文档的偏移量
+            var offset = $(this).offset();
+            //获取鼠标相对于大图左上角的x轴偏移量
+            var x = even.pageX - offset.left;
+            //获取鼠标相对于大图左上角的y轴偏移量
+            var y = even.pageY - offset.top;
+            //设置放大镜放大倍数，可自行设置
+            var multiple = 8;
+            //获取放大镜所在div的宽度和高度
+            var mirrorwidth = $(".right").width();
+            var mirrorHeight = $(".right").height();
+            //获取bigimage此时的src的值
+            var address = $(this).attr("src");
+            //更改放大镜的src的值，切换图片
+            $("[mirror]").attr("src",address);
+            $(".right").css("display","block").scrollLeft(Math.max(x*multiple - mirrorwidth/2.0)).scrollTop(Math.max(y*multiple - mirrorHeight/2.0));
+        }).mouseout(function(){
+            $(".right").css("display","none");
+        });
+    </script>
+</html>

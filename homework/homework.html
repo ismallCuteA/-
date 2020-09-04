@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      position: relative;
+    }
+
+    .pic {
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      background: url(your-heart.png) center center no-repeat;
+      background-size: cover;
+      opacity: 1;
+      display: none;
+      /* left: 100px; */
+      top: 0;
+      left: 0;
+      /* transition: all 2s linear; */
+      cursor: pointer;
+      user-select: none;
+
+    }
+  </style>
+</head>
+
+<body>
+  <!-- style="position:absolute;left:120px;" -->
+  <div class="pic">
+
+  </div>
+  <script>
+    let pic = document.querySelector(".pic");
+    window.addEventListener("click", function (e) {
+
+      // css
+      // pic.style.display = "block";
+      // pic.style.left = "e.clentX+'px'-25px"
+      console.log(e.clientX)
+      console.log(e.clientY)
+      pic.style.cssText = "display:block;"
+      pic.style.left = e.clientX - 25 + 'px';
+      pic.style.top = e.clientY - 25 + 'px';
+      let opacity = 1;
+      let timer = setTimeout(function () {
+
+        // transform: translateY(100px);
+        // transition: all 2s linear;
+        // pic.style.cssText = "transform-duration:2s;transform:translateY(100px);";
+        pic.style.opacity -= 0.01;
+        pic.style.transition = '2s';
+        // if (pic.style.opacity < 0) {
+        //   pic.remove()
+        // }
+        pic.style.top = e.clientY - 185 + 'px';
+
+      }, 17)
+
+    })
+  </script>
+</body>
+
+</html>

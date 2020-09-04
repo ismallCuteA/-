@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="checkbox" v-model="message" value="A" name="" id="checkA">
+    <label for="checkA">A</label>
+    <input type="checkbox" v-model="message" value="A1" name="" id="checkB">
+    <label for="checkB">B</label>
+    <input type="checkbox" v-model="message" value="A2" name="" id="checkC">
+    <label for="checkC">C</label>
+    <input type="checkbox" v-model="message" value="A3" name="" id="checkD">
+    <label for="checkD">D</label>
+    <p>{{message}}</p>
+    <input type="radio" v-model="message" value="A" name="" id="checkA">
+    <label for="checkA">A</label>
+    <input type="radio" v-model="message" value="A1" name="" id="checkB">
+    <label for="checkB">B</label>
+    <input type="radio" v-model="message" value="A2" name="" id="checkC">
+    <label for="checkC">C</label>
+    <input type="radio" v-model="message" value="A3" name="" id="checkD">
+    <label for="checkD">D</label>
+    <p>{{message}}</p>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: []
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

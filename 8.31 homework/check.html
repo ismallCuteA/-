@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <book :price="23" :count="16"></book>
+  </div>
+
+  <script>
+    Vue.component("book", {
+      props: {
+        bookTitle: {
+          type: [String, Number],
+          default: "the upper lip 上嘴唇 enriched with new books 充实"
+        },
+        price: {
+          type: Number,
+          required: true
+        },
+        author: {
+          type: String,
+          default: "innate ability 与生俱来 such a dumb question 愚蠢"
+        },
+        count: {
+          type: Number,
+          // validator: function (val) {
+          //   return val % 2 == 0
+          // }
+          validator(value) {
+            return value % 2 == 0
+          }
+        }
+      },
+      template: `
+      <div>
+        <p>{{bookTitle}}</p>
+        <p>{{price}}</p>
+        <p>{{author}}</p>
+        <p>{{count}}</p>
+
+        </div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {},
+
+    });
+  </script>
+</body>
+
+</html>

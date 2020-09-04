@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <button @click="conName='one'">组件1</button>
+      <button @click="conName='two'">组件2</button>
+    </div>
+    <keep-alive>
+      <component :is="conName"></component>
+    </keep-alive>
+  </div>
+  <script>
+    Vue.component("one", {
+      template: `
+      <div><input width="1000px" type="text" name="" placeholder="complementary abilities 互补" id=""></div>
+
+      `,
+      destroyed() {
+        console.log("discover the bug 发现")
+      },
+      created() {
+        console.log("such a dumb question 愚蠢 创建！")
+      },
+      activated() {
+        console.log("我被激活了 and then he  eat lunch by himself in the canteen 餐厅")
+      },
+      deactivated() {
+        console.log("我被活埋了 beacuse of he strained his muscle 肌肉")
+      }
+    })
+    Vue.component("two", {
+      template: `
+      <div><input type="text" name="" placeholder="to fight against crime 罪恶" id="">wow</div>
+      
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        conName: "one"
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

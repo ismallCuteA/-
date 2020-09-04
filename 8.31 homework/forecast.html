@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="bxios.js"></script>
+  <style>
+    tr,
+    td {
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: .5em 1em;
+      background-color: #b0b0b0;
+    }
+
+    #app {
+      width: 1226px;
+      height: 460px;
+      margin: 0 auto;
+      text-align: center;
+      /* background: url(./tq.jpg) center center no-repeat; */
+      /* background-size: cover;
+      opacity: 1; */
+    }
+
+    .box2 {
+      margin: 0 auto;
+      /* border-collapse: collapse; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- http://wthrcdn.etouch.cn/weather_mini?city=苏州 -->
+  <div id="app">
+    <div class="box1">
+      <p>{{city}}天气预报</p>
+      <p> 今天：{{wendu}}度</p>
+      <p>温馨提示：{{ganmao}}</p>
+
+
+
+      <table class="box2">
+        <theone v-for="item in list" :item="item"></theone>
+      </table>
+
+
+
+
+
+    </div>
+  </div>
+
+  <script>
+    Vue.component("theone", {
+      props: ['item'],
+      template: `
+      
+        <tr>
+          <td>8月{{item.date}} </td>
+          <td>{{item.fengli}} </td>
+          <td>{{item.fengxiang}}</td>
+          <td>{{item.high}} </td>
+          <td>{{item.low}} </td>
+        </tr>
+      
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        list: [],
+        wendu: '',
+        ganmao: '',
+        city: ''
+      },
+      methods: {},
+      created() {
+        let that = this;
+        let url = 'http://wthrcdn.etouch.cn/weather_mini?city=苏州';
+        bxios.get(url)
+          .then(function (response) {
+            console.log(JSON.parse(response).data);
+            let result = JSON.parse(response).data;
+            console.log(result);
+            console.log('------------------')
+            console.log(JSON.parse(response).data.forecast)
+            that.list = JSON.parse(response).data.forecast;
+            that.wendu = result.wendu;
+            that.city = result.city;
+            that.ganmao = result.ganmao;
+            for (let i = 0; i < that.list.length; i++) {
+              let item = that.list[i];
+              item.fengli = item.fengli.slice(9, -3);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    });
+  </script>
+</body>
+
+</html>

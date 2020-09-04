@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <book :obj="bookObj"></book>
+
+  </div>
+
+  <script>
+    Vue.component("book", {
+      props: ['obj'],
+      template: `
+      <div>
+  <p>name:{{obj.name}}</p>
+  <p>author:{{obj.author}}</p>
+  <p>price:{{obj.price}}</p>
+</div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        bookObj: {
+          name: "在人间",
+          author: "高尔基",
+          price: 15
+        }
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body,
+    #app,
+    .container {
+      height: 100%;
+    }
+
+    #app {
+      margin: 0 auto;
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 400px;
+      background-color: aqua;
+    }
+
+    .top-title,
+    p {
+      font-size: 28px;
+      font-family: 楷体;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .top p {
+      color: red;
+    }
+
+    .bottom p {
+      color: green;
+    }
+
+    .in {
+      display: flex;
+    }
+
+    .in1 {
+      width: 346px;
+      height: 38px;
+      border-radius: 10px;
+      outline: none;
+      font-size: 16px;
+      font-family: 楷体;
+      padding-left: 6px;
+    }
+
+    .in2 {
+      flex: 1;
+      border: none;
+      border-radius: 10px;
+      /* user-select: none; */
+      outline: none;
+      border: 1px solid #333;
+      line-height: 38px;
+      vertical-align: center;
+    }
+
+    .top {
+      display: flex;
+      border-bottom: 1px solid #b0b0b0;
+      line-height: 38px;
+      vertical-align: center;
+    }
+
+    .item-content {
+      width: 306px;
+      /* height: 38px; */
+
+    }
+
+    .btn {
+      display: flex;
+      flex: 1;
+      margin-top: 5px;
+    }
+
+    .btn button {
+      flex: 1;
+      height: 28px;
+      border-radius: 16px;
+      outline: 0;
+      border: 1px solid #333;
+
+    }
+
+    .bottom {
+      display: flex;
+    }
+
+    .p1 {
+      color: red;
+    }
+
+    .p2 {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="top-title">备忘录</div>
+      <div class="in">
+        <input class="in1" type="text" name="" id="" v-model="message" placeholder="请输入代办事项">
+        <input class="in2" type="submit" value="提交" @click="clickMethod">
+      </div>
+      <p class="p1">未完成</p>
+      <div class="top" v-for="(item,index) in nofinishlist">
+        <div class="item-content">{{index+1}}、{{item}}</div>
+        <div class="btn">
+          <button class="del" @click="del(index)">删除</button>
+          <button class="finish" @click='finish(item,index)'>完成</button>
+        </div>
+      </div>
+      <p class="p2">已完成</p>
+      <div class="bottom" v-for="(item,index) in finishlist">
+        <div class="item-content">{{index+1}}、{{item}}</div>
+        <div class="btn">
+          <button class="secdel" @click="secdel(index)">删除</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        nofinishlist: [],
+        finishlist: [],
+        message: "",
+
+      },
+
+      methods: {
+        clickMethod() {
+          if (this.message.trim()) {
+            if (this.nofinishlist.indexOf(this.message) != -1) {
+              alert("不能添加重复事件");
+            } else {
+              this.nofinishlist.push(this.message);
+              this.message = ''
+
+            }
+          } else {
+            alert("请输入事件")
+          }
+
+        },
+        del(index) {
+          this.nofinishlist.splice(index, 1);
+        },
+        finish(item, index) {
+          this.finishlist.push(item);
+          this.nofinishlist.splice(index, 1);
+
+        },
+        secdel(index) {
+          this.finishlist.splice(index, 1);
+
+        },
+
+
+      },
+      watch: {
+        nofinishlist(newVal) {
+          localStorage.setItem("nofinish", JSON.stringify(newVal))
+        },
+        finishlist(newVal) {
+          localStorage.setItem("finished", JSON.stringify(newVal))
+        }
+      },
+      created() {
+        let nofinishlist = JSON.parse(localStorage.getItem("nofinish"));
+        if (nofinishlist) {
+          this.nofinishlist = nofinishlist;
+        };
+        let finishlist = JSON.parse(localStorage.getItem("finished"));
+        if (finishlist) {
+          this.finishlist = finishlist;
+        }
+      }
+
+
+    });
+  </script>
+</body>
+
+</html>

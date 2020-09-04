@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div v-for="item in arr ">
+      {{item}}
+    </div>
+    <button @click="clickMethod1">reverse</button>
+    <button @click="clickMethod2">sort</button>
+    <button @click="clickMethod3">unshift</button>
+    <button @click="clickMethod4">小帅哥点</button>
+    <button @click="clickMethod5">slice</button>
+    <button @click="clickMethod6">大帅哥点</button>
+
+    <button @click="clickMethod7">晓磊点</button>
+
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        arr: [1, 2, 3, 4, 5, 6, 7]
+      },
+      methods: {
+        clickMethod1() {
+          return this.arr.reverse();
+        },
+        clickMethod2() {
+          return this.arr.sort()
+        },
+        clickMethod3() {
+          return this.arr.unshift('3')
+        },
+        clickMethod4() {
+          return this.arr.unshift('晓磊真帅,点的人是晓磊的爸爸的儿子')
+        },
+        clickMethod5() {
+          return this.arr = this.arr.slice(1, 4);
+
+        },
+        clickMethod6() {
+          return Vue.set(app.arr, 0, '晓磊是真的超级爸爸呢')
+
+        },
+        clickMethod7() {
+          return app.$set(app.arr, 0, '晓磊觉得所言都虚')
+
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>

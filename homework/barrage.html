@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 1226px;
+      height: 560px;
+      margin: 0 auto;
+
+    }
+
+    .box1 {
+      width: 1225px;
+      height: 460px;
+      border: 1px solid #333;
+      border-bottom: none;
+      position: relative;
+    }
+
+    .box2 {
+      width: 1226px;
+      height: 100px;
+      display: flex;
+      /* border: 1px solid green; */
+
+    }
+
+    .id1 {
+      display: inline-block;
+    }
+
+    .cute {
+      /* height: 98px;
+      width: 1116px; */
+      flex: 4;
+      border-right: none;
+      border-bottom: 1px solid #333;
+      font-size: 28px;
+    }
+
+    .cute1 {
+      /* width: 106px;
+      height: 100px;
+      margin-left: -6px; */
+      float: right;
+      flex: 1;
+      border: 1px solid #333;
+      /* border-right: 2px solid #333; */
+      /* margin-left: 1px; */
+      margin-right: -1px;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box1"></div>
+    <div class="box2">
+      <input class="id1 cute" type="text" name="" id="">
+      <input class="id1 cute1" type="submit" value="发送弹幕">
+    </div>
+
+  </div>
+  <script>
+    // create div 2.classList.add 3.高度random 
+    let input1 = document.querySelector(".cute");
+    let box1 = document.querySelector(".box1");
+    console.log(box1)
+    input1.addEventListener("change", function () {
+      let div1 = document.createElement("div");
+      div1.innerHTML = input1.value;
+      console.log(div1.innerHTML)
+
+    })
+    let input2 = document.querySelector(".cute1");
+    input2.addEventListener("click", function () {
+      let div1 = document.createElement("div");
+      div1.innerHTML = input1.value;
+      // 不用加"
+      box1.appendChild(div1);
+      let cs = Math.random() * 440 + 'px';
+      let ys = ["red", "yellow", 'blue', 'lightblue', 'aqua']
+      let ccs = parseInt(Math.random() * ys.length);
+      console.log(ccs);
+      //  "transition: all 6s;transform: translateX(-1226px);border:1px solid #333;position:absolute;left:226px;top:" +
+      // cs;
+      div1.style = 'border: 1px solid ' + ys[ccs] + ';color:' + ys[ccs] + ';position:absolute;left:1226px;top:' +
+      cs;
+      let timer = setInterval(function () {
+        div1.style.left = parseInt(div1.style.left) - 5 + 'px';
+        if (parseInt(div1.style.left) < 0) {
+          div1.remove();
+        }
+      }, 100)
+
+
+    })
+  </script>
+</body>
+
+</html>

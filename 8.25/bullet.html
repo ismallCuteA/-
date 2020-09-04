@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹幕飘萍</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background: salmon;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bullet {
+            border: 1px solid cadetblue;
+            color: #fff;
+            position: absolute;
+            right: 0;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <span class="bullet" v-for="item in list"
+                :style="'top:'+item.top+';right:'+item.right+'px'">{{item.text}}</span>
+        </div>
+
+        <div>
+            <input type="text" v-model.trim="message">
+            <button @click="send">发送</button>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                list: [],
+                timer: null
+            },
+            methods: {
+                send() {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  #app {
+    height: 880px;
+    width: 880px;
+    margin: 0 auto;
+
+  }
+
+  .container {
+    width: 380px;
+    height: 380px;
+    margin: 0 auto;
+
+  }
+
+  img {
+
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <img :src="pic" alt="">
+    <div class="container">
+
+      <div class="c1">{{bigtitle}}</div>
+      <div class="box1" v-for="(item,index) in question">
+        <p>{{index+1}}、{{item.title}}</p>
+        <div class="box2" v-for="(asitem,asindex) in item.answer">
+          <!-- <span>{{index+1}}、{{item}}</span> -->
+          <input :disabled="item.flag" :type="item.type" :value="asitem" v-model="item.model"
+            @change="result[item.num]=item.model">{{asitem}}
+        </div>
+
+      </div>
+      <div class="btn">
+        <button @click="submit" :disabled="fule">提交</button>
+      </div>
+      <div class="score" v-if="score">
+        your score is:{{score}}分
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        pic: "sk.jpg",
+
+        bigtitle: "满分10分 限时3min",
+        question: [{
+            title: "西游记的作者是谁?",
+            answer: [
+              "A:陈新风",
+              "B:钱宗普",
+              "C:吴承恩",
+              "D:童丽佳",
+
+            ],
+            type: 'radio',
+            flag: false,
+            model: 0,
+            num: 0
+          },
+          {
+            title: "老钱的特点?(多选)",
+            answer: [
+              "A:帅的一笔",
+              "B:高冷男神",
+              "C:发型不错",
+              "D:丑"
+
+            ],
+            type: 'checkbox',
+            flag: false,
+            model: [],
+            num: 1
+          }
+        ],
+        score: 0,
+        num: 0,
+        result: [],
+        fule: false
+      },
+      methods: {
+        submit() {
+          if (this.result[0] == "C:吴承恩") {
+            this.score += 5;
+          } else {
+            this.score += 0
+          }
+          if (this.result[1] == "D:丑") {
+            this.score += 0
+          } else {
+            if (this.result[1].length < 3) {
+              this.score += 2.5
+
+            } else {
+              this.score += 5
+
+            }
+          }
+          this.score = '' + this.score;
+          this.flag = "true";
+          this.fule = true;
+          if (this.score == 10) {
+            this.pic = "xl.jpg"
+          } else {
+            this.pic = "kq.jpg"
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

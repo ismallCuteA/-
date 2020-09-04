@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="say('hi',$event)">say hi</button>
+    <button @click="say('fuck',$event)">say fuck</button>
+    <button @click="say(this.cute)">say con</button>
+    <button @click="say('entail a lot of travelling 需要')">say con</button>
+
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        cute: 'reach an unanimous verdict of not guilt'
+      },
+      methods: {
+        say(m, e) {
+          alert(m);
+          console.log(e)
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

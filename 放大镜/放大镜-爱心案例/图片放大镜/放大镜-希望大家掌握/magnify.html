@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜</title>
+    <style>
+        /* html{
+            background-color: black;
+        } */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .itemArea{
+            width: 400px;
+            height: 400px;
+            margin: 450px;
+            margin-top: 100px;
+            /* border: 1px black solid; */
+            position: relative;
+        }
+        .pic img{
+            width: 400px;
+            height: 400px;
+            position: absolute;  
+            overflow: hidden;
+        }
+        .pic .cover{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-image: url("img/网格.jpg");
+            background-size: 3px,3px;
+            opacity: 0.4;
+            display: none;
+
+        }
+        .itemArea .detail{
+            width: 400px;
+            height: 400px;
+            /* border: 1px black solid; */
+            position: absolute;
+            top: 0;
+            left: 400px;
+            background-image: url("img/图.jpg");
+            /* background-size: 267%; */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="itemArea">
+            <div class="pic">
+                <img src="img/图.jpg" alt="">
+                <div class="cover"></div>
+            </div>
+            <div class="detail"></div>
+        </div>
+    </div>
+    <script>
+       
+        var pic = document.querySelector(".itemArea .pic");
+        var cover = document.querySelector(".itemArea .cover");
+        var detail = document.querySelector(".itemArea .detail");
+        pic.addEventListener("mouseenter",function(e){
+            detail.style.display = "block";
+            cover.style.display = "block";
+        });
+        pic.addEventListener("mousemove",function(e){
+            
+            detail.style.display = "block";
+            cover.style.display = "block";
+            // console.log(e.clientX, e.clientY)
+            //鼠标在图片上的坐标
+            var x = e.clientX;
+            var y = e.clientY;
+            // 图片的坐标
+            // console.log(pic.getBoundingClientRect().left, pic.getBoundingClientRect().top)
+            // getBoundingClientRect
+            var left = pic.getBoundingClientRect().left;
+            var top = pic.getBoundingClientRect().top;
+            
+            //小框坐标
+            var z = x - left - 75   //减去75是把鼠标放到小框中间
+            var s = y - top - 75
+            //用判断防止小框超出图片范围
+            if(z < 0){
+                z = 0;
+            }
+            if(z > 250){
+                z = 250
+            }
+            if(s < 0){
+                s = 0;
+            }
+            if(s > 250){
+                s = 250
+            }
+           
+            cover.style.left = z + "px";
+            cover.style.top = s + "px";
+            // 放大的图片
+            detail.style.backgroundPosition = z/250*100+"%" +" "+ s/250*100+"%"
+            // console.log(detail.style.backgroundPosition)
+        });
+        // 鼠标滑出
+        pic.addEventListener("mouseleave",function(e){
+            detail.style.display = "none";
+            cover.style.display = "none";
+        });
+       
+        
+    </script>
+</body>
+</html>

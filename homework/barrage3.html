@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弹幕</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    #video-wrap {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    #video-wrap video {
+      width: 100%;
+    }
+
+    .input-wrap {
+      padding: 10px;
+      border: 1px solid #f3f3f3;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    #input {
+      flex-grow: 1;
+      font-size: 18px;
+      padding: 10px;
+      outline: none;
+      margin-right: 10px;
+    }
+
+    #btn {
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    .bullet {
+      position: absolute;
+      font-size: 15px;
+      padding: 10px;
+      border: 1px solid #fff;
+      color: #fff;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="app">
+    <div id="video-wrap">
+      <video src="guniang.mkv" autoplay loop></video>
+      <span class="bullet" v-for="item in bulletList"
+        :style="{top:item.top, left:item.left+'px'}">{{item.bullet}}</span>
+    </div>
+    <div class="input-wrap">
+      <input type="text" v-model.trim="message" placeholder="发送弹幕">
+      <button @click="send">发送</button>
+    </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "",
+        bulletList: [],
+        timer: null
+      },
+
+      methods: {
+        send() {
+          let that = this;
+
+          if (this.message) {
+            this.bulletList.push({
+              top: that.getRandomTop() + "px",
+              left: 800,
+              speed: Math.random() * 5 + 1,
+              bullet: that.message
+            });
+
+            if (!this.timer) {
+              this.timer = setInterval(function () {
+                for (let i = 0; i < that.bulletList.length; i++) {
+                  that.bulletList[i].left -= that.bulletList[i].speed;
+                  if (that.bulletList[i].left < 0) {
+                    that.bulletList.splice(i, 1);
+                    i--;
+                  }
+                }
+
+                if (that.bulletList.length < 1) {
+                  clearInterval(that.timer);
+                  that.timer = null;
+                }
+              }, 17);
+            }
+          }
+
+          that.message = "";
+
+        },
+
+
+        getRandomTop() {
+          let seed = Math.random();
+
+          return seed * document.getElementById("video-wrap").getBoundingClientRect().height;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

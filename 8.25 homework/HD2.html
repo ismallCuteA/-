@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .bigbox {
+    height: 600px;
+    width: 800px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .item {
+    height: 600px;
+    width: 800px;
+    float: left;
+  }
+
+  .left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+
+  .right {
+    position: absolute;
+    left: 750px;
+    top: 50%;
+  }
+
+
+
+  .btn {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+  }
+
+  .corei1 {
+    background: yellow;
+  }
+
+  .corei11 {
+    background: red;
+  }
+
+  .corei12 {
+    background: aqua;
+  }
+
+  .corei13 {
+    background: pink;
+  }
+
+  .container {
+    width: 3200px;
+    height: 600px;
+    /* position: relative; */
+    transition: all 1.4s linear;
+  }
+</style>
+
+<body>
+  <!-- <a href="" style="transform:translateX(-800px);transition: all 2s;"></a> -->
+  <div id="app">
+    <div class="bigbox">
+      <!-- :style="styleObj" -->
+      <div class="container" :style="styleObj">
+        <div class="item corei1"></div>
+        <div class="item corei11"></div>
+
+        <div class="item corei12"></div>
+
+        <div class="item corei13"></div>
+
+      </div>
+      <button class="left btn" @click='left'>
+        <</button> <button class="btn right" @click='right'>>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        proIndex: 0,
+        // styleObj: {
+        //   height: 600 + 'px',
+        //   width: 3200 + 'px',
+        //   background: 'red'
+        // }
+      },
+      computed: {
+        styleObj() {
+          return {
+            transform: "translateX(" + (-this.pageIndex * 800) + "px)"
+          }
+
+        }
+      },
+      methods: {
+        left() {
+          // if(this.pageIndex<3)
+          if (this.pageIndex < 3) {
+            this.pageIndex++;
+          }
+        },
+        right() {
+          if (this.pageIndex > 0) {
+            this.pageIndex--;
+          }
+        }
+      }
+
+    });
+  </script>
+</body>
+
+</html>

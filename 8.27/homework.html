@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //     1.给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。
+    // 示例:
+    // 输入: 38
+    // 输出: 2 
+    // 解释: 各位相加的过程为：3 + 8 = 11, 1 + 1 = 2。 由于 2 是一位数，所以返回 2。
+    function getNum(num) {
+      let str = num.toString();
+      let sum = 0;
+      for (let i = 0; i < str.length; i++) {
+        sum += (str[i]) * 1;
+        if (sum >= 10) {
+          sum -= 9
+        }
+      }
+
+      return sum
+    }
+    console.log(getNum(38))
+
+    //     2.在整数数组中，如果一个整数的出现频次和它的数值大小相等，我们就称这个整数为「幸运数」。
+
+    // 给你一个整数数组 arr，请你从中找出并返回一个幸运数。
+
+    // 如果数组中存在多个幸运数，只需返回 最大 的那个。
+    // 如果数组中不含幸运数，则返回 -1 。
+    function lucky(arr) {
+      let lucky = [];
+      let currentValue;
+      arr = arr.sort((a, b) => a - b);
+      for (let i = 0; i < arr.length; i++) {
+        currentValue = arr[i];
+        let index = 0;
+        for (let j = 0; j < arr.length; j++) {
+          if (arr[j] === currentValue) {
+            index++
+          }
+        }
+        if (currentValue == index) {
+          lucky.push(currentValue);
+          index = 0;
+        }
+      }
+      return lucky.length ? lucky[lucky.length - 1] : -1
+    }
+    console.log(lucky([1, 1, 1, 2, 2, 3, 3, 3]));
+
+    function luck2(arr) {
+      let newarr = arr.reduce(function (acc, cur) {
+        if (acc[cur]) {
+          acc[cur]++;
+        } else {
+          acc[cur] = 1
+        }
+        return acc
+      }, [])
+      for (let i = newarr.length; i >= 0; i--) {
+        if (newarr[i] == i) {
+          return newarr[i]
+        }
+      }
+      return -1
+    }
+    console.log(luck2([1, 1, 1, 2, 2, 3, 3, 3]))
+  </script>
+</body>
+
+</html>

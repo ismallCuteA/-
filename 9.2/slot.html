@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <my-component>
+      <p>{{message}}</p>
+    </my-component>
+    <my-component>
+      123
+    </my-component>
+  </div>
+
+  <script>
+    Vue.component("my-component", {
+      data() {
+        return {
+          message: "it's essential for the business to innovate 创新"
+        }
+      },
+      template: `
+      <div>
+      <slot>默认的</slot>
+      <p>{{message}}</p>
+      </div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: "be stunned by the news 震惊"
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

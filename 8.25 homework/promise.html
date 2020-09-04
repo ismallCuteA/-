@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let promise = new Promise(function (resolve, reject) {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://wthrcdn.etouch.cn/weather_mini?city=苏州');
+      xhr.send();
+      xhr.onload = function () {
+        console.log(xhr.response)
+      }
+      xhr.onerror = function () {
+        console.log(xhr.statusText)
+      }
+    })
+    promise.then(function (res) {
+      console.log('my name is promise');
+      console.log(res)
+    })
+    promise.catch(function (statusText) {
+      console.log(statusText)
+    })
+  </script>
+</body>
+
+</html>

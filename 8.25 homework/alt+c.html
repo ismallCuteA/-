@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  .outer {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <input class="outer" @keyup.alt.c="click"></input>
+    <input class="outer2" @keyup="click2"></input>
+    <!-- exact -->
+    <div @click.alt.ctrl.exact="clickMe">cute</div>
+    <div @click.alt.shift.exact="click22">ugly</div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        clickMe(e) {
+          console.log('shoes with high heels')
+        },
+        click(e) {
+          console.log(e.key);
+          console.log("judge a preso through his or her appearance 外貌")
+        },
+        click2(e) {
+          console.log(e.key);
+          console.log("give artists an oppotunity to display their paintings 展示")
+        },
+        click22(e) {
+          console.log('exact precise instructions 准确')
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

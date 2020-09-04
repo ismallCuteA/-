@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    .box1 {
+      height: 600px;
+      width: 1226px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="box1" v-for="item in list">
+
+      <img :src='item.header' alt="">
+      <p>{{item.text}}</p>
+      123
+    </div>
+
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        list: []
+
+      },
+      methods: {},
+      created() {
+        axios.get('https://api.apiopen.top/getJoke?page=1&count=10&type=image')
+          .then(function (response) {
+            console.log(response)
+            console.log(response.data);
+            console.log(response.data.result);
+            let that = this;
+            that.list = response.data.result;
+            console.log(that.list)
+
+
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    });
+  </script>
+</body>
+
+</html>

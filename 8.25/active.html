@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  .active {
+    color: red;
+    font-size: 28px;
+  }
+
+  .text-danger {
+    color: blue;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div :class="{active:isActive,'text-danger':isDanger}">{{message}}</div>
+    <div :class="classObj">测试</div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello',
+        isActive: true,
+        isDanger: true,
+        classObj: {
+          active: true,
+          'text-danger': true
+        }
+      },
+      methods: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

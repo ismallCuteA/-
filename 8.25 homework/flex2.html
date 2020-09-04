@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    .HD {
+      height: 600px;
+      width: 800px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      transition: all linear 2s;
+    }
+
+    .container {
+      height: 600px;
+      width: 800px;
+      overflow: hidden;
+    }
+
+    .box {
+      height: 600px;
+      width: 800px;
+      /* flex: 1; */
+      flex-shrink: 0;
+
+    }
+
+    consider the implication of their actions 影响 .item1 {
+      background-color: red;
+    }
+
+    .item11 {
+      background-color: yellow;
+    }
+
+    .item12 {
+      background-color: green;
+    }
+
+    .item13 {
+      background-color: aqua;
+    }
+
+    .item14 {
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click='clickMethod'>HD</button>
+    <div class="container">
+      <div class="HD" :style="styleObj">
+        <div class="box item1"></div>
+        <div class="box item11"></div>
+        <div class="box item12"></div>
+        <div class="box item13"></div>
+        <div class="box item14"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        proIndex: 0
+      },
+      methods: {
+        clickMethod() {
+          if (this.proIndex < 3) {
+            this.proIndex++
+          }
+        }
+      },
+      computed: {
+        styleObj() {
+          return {
+            transform: "translateX(" + (-this.proIndex * 800) + "px)"
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

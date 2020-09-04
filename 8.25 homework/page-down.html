@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  .outer {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <input class="outer" @keyup.q="click"></input>
+    <input class="outer2" @keyup="click2"></input>
+    <input class="outer2" @keyup.a="click4"></input>
+
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        click(e) {
+          console.log(e.key);
+          console.log("keyboard 事件,find the company's name in a trade directory 商行名录")
+        },
+        click2(e) {
+          console.log(e.key);
+          console.log("give artists an oppotunity to display their paintings 展示")
+        },
+        click3(e) {
+          console.log(e.key);
+          console.log("page-down+the index of page will help you find the items you want more quickly 索引")
+        },
+        click4(e) {
+          console.log(e.key);
+          console.log("more effective than we incline to think +a")
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

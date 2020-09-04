@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <book :price="23" :count="16" abc="123" class="123"></book>
+    <!-- !component's property 会放在根标签上 -->
+    <!-- at both font and rear of the plane 尾部 -->
+  </div>
+
+  <script>
+    Vue.component("book", {
+      props: {
+        //close property 继承
+        inheritAttrs: false,
+        // class & style 除外
+        bookTitle: {
+          type: [String, Number],
+          default: "the upper lip 上嘴唇 enriched with new books 充实"
+        },
+        price: {
+          type: Number,
+          required: true
+        },
+        author: {
+          type: String,
+          default: "innate ability 与生俱来 such a dumb question 愚蠢"
+        },
+        count: {
+          type: Number,
+          // validator: function (val) {
+          //   return val % 2 == 0
+          // }
+          validator(value) {
+            return value % 2 == 0
+          }
+        }
+      },
+      template: `
+      <div abc="you are not good" class="abc">
+      // if there is a root property ,then will replace it 
+      // if there are class on it ,they will be fused
+      Success continues to elude her. 成功依然与他无缘
+        <p>{{bookTitle}}</p>
+        <p>{{price}}</p>
+        <p>{{author}}</p>
+        <p>{{count}}</p>
+
+        </div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {},
+
+    });
+  </script>
+</body>
+
+</html>

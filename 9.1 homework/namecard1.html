@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<style>
+  .message {
+    position: absolute;
+    right: 0;
+    top: 68px;
+    font-family: 楷体;
+    font-weight: bold;
+    color: #b0b0b0;
+  }
+
+  #app {
+    height: 300px;
+    width: 550px;
+    margin: 300px auto;
+    background: url(zz.jpg) no-repeat center center;
+    background-size: cover;
+
+    position: relative;
+  }
+
+  .pic {
+    position: absolute;
+    top: 55px;
+    left: 61px;
+    background: url(caj.jpg) center center;
+    background-size: cover;
+    width: 110px;
+    height: 110px;
+    z-index: 999;
+  }
+
+  .message div {
+    margin-top: 10px;
+  }
+</style>
+
+<body>
+  <div id="app">
+
+    <box1 :name="'产总'" :phone="'666666'" :company="'合肥爱军北派传销无限公司'" :job="'传销头子'" :email="'aijun666@aj.com'"></box1>
+
+  </div>
+
+  <script type="module">
+    import a from "./namecard/1.js"
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

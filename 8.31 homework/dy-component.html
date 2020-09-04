@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<STYle>
+  .dd {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  #app {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    position: relative;
+    transition: all 2s;
+  }
+
+  .dd img {
+    width: 100%
+  }
+
+  .left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 50px;
+    width: 50px;
+  }
+
+  .right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 50px;
+    width: 50px;
+  }
+</STYle>
+
+<body>
+  <div id="app">
+    <component :is='name'>
+
+    </component>
+
+    <button class="left btn" @click='left'>
+      &lt;</button> <button class="btn right" @click='right'>&gt;
+    </button>
+  </div>
+
+  <script>
+    Vue.component("num1", {
+      template: `
+      <div class="dd"><img src="xl.jpg"></div>
+      `
+    })
+    Vue.component("num2", {
+      template: `
+      <div class="dd"><img src="kq.jpg"></div>
+      `
+    })
+    Vue.component("num3", {
+      template: `
+      <div class="dd"><img src="sk.jpg"></div>
+      `
+    })
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: "num1",
+        sz: 1
+      },
+      methods: {
+        left() {
+          this.sz--;
+          if (this.sz == 0) {
+            this.sz = 3
+
+
+          }
+          this.name = "num" + this.sz
+          console.log(this.sz)
+        },
+        right() {
+          this.sz++;
+          if (this.sz == 4) {
+            this.sz = 1
+
+
+          }
+          this.name = "num" + this.sz
+          console.log(this.sz)
+
+        }
+
+
+      }
+    });
+  </script>
+</body>
+
+</html>

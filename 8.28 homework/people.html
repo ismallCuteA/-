@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+
+    .container {
+      width: 1000px;
+      height: 460px;
+      margin: 100px auto;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+
+    .top {
+      height: 86px;
+      width: 980px;
+      margin: 8px auto;
+      background: rgba(0, 0, 0, .15);
+    }
+
+    .bottom {
+      flex: 1;
+      width: 980px;
+      /* background: #b0b0b0; */
+      /* box-shadow: 0 2px 10px rgba(0, 0, 0, .15); */
+      /* border: 1px solid #333; */
+      margin: 0 auto;
+    }
+
+    .bottom table {
+      border: 1px solid #333;
+      border-collapse: collapse;
+    }
+
+    .bottom table tr,
+    .bottom table td {
+      border: 1px solid #333;
+
+    }
+
+    .bottom table tr {
+      border-left: none;
+
+    }
+
+    .bottom table td {
+      border-top: none;
+      border-bottom: none;
+      border-right: none;
+      height: 43px;
+      line-height: 43px;
+      text-align: center;
+    }
+
+    table {
+      width: 980px;
+      height: 327px;
+    }
+
+    table tr {
+      display: flex;
+    }
+
+    table tr td {
+      flex: 1;
+    }
+
+    .search {
+      width: 360px;
+      height: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 8px;
+    }
+
+    .top {
+      display: flex;
+      vertical-align: center;
+      align-items: center;
+      /* vertical-align: center; */
+    }
+
+    .search label {
+      margin-right: 8px;
+    }
+
+    #name {
+      height: 33px;
+      padding-left: 6px;
+      margin-right: 8px;
+    }
+
+    #se {
+      display: block;
+      height: 40px;
+      background-color: lightskyblue;
+      outline: 0;
+      width: 70px;
+      border-radius: 10px;
+      line-height: 31px;
+      text-align: center;
+      /* user-select: none; */
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+
+    .item {
+      height: 33px;
+      width: 55px;
+      border-radius: 5px;
+      margin-left: 5px;
+      outline: 0;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+    }
+
+    .item1 {
+      background: #b0b0b0;
+
+    }
+
+    .item11 {
+      background: pink;
+
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    #shadow {
+      height: 100%;
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100000px;
+      background: rgba(105, 101, 101, .6);
+    }
+
+    #app {
+      position: relative;
+    }
+
+    .container2 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: space-around;
+      top: 200px;
+      left: 700px;
+      background: #fff;
+      /* align-items: center; */
+    }
+
+    .ti {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .i1 {
+      width: 265px;
+      height: 30px;
+      margin: 0 auto;
+    }
+
+    .l1 {
+      margin-left: 18px;
+      border-radius: 15px;
+    }
+
+    .idiot {
+      width: 60px;
+      height: 30px;
+      margin-left: 8px;
+
+    }
+
+    .o1 {
+      margin-right: 14px;
+      background: blue;
+      outline: -1;
+      border-radius: 5px;
+      /* border: none; */
+      user-select: none;
+    }
+
+    .o11 {
+
+      background: red;
+      outline: 0;
+      border-radius: 5px;
+      /* border: 1px solid red; */
+      user-select: none;
+
+    }
+
+    #ad {
+      width: 417px;
+      padding-left: 62px;
+      padding-right: 62px;
+      text-align: left;
+    }
+
+    #cd {
+      padding-left: 62px;
+      padding-right: 62px;
+    }
+
+    td {
+      position: relative;
+    }
+
+    .img {
+      position: absolute;
+      top: 14px;
+      left: 108px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- container top bottom -->
+    <div class="container">
+      <div class="top">
+        <div class="search">
+          <label for="name">姓名</label>
+          <input type="text" name="" id="name" placeholder="请输入姓名" v-model.trim="message">
+          <input type="submit" value="搜索" id="se" @click="se">
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="list">
+
+        </div>
+        <table>
+          <tr>
+            <td>日期<img :src="img" class="img" @click="imgClick"></td>
+            <td>名字</td>
+            <td id="cd">地址</td>
+            <td>邮编</td>
+            <td>操作</td>
+          </tr>
+          <tr v-for="(item,index) in list" v-if="item.seen">
+            <td>{{item.date}}</td>
+            <td>{{item.name}}</td>
+            <td id="ad">{{item.adress}}</td>
+
+            <td>{{item.email}}</td>
+            <td><button @click="alert(item,index)" class="item item1">修改</button><button @click="del(index)"
+                class="item item11">删除</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+    <!-- shadow 居中 height 透明 -->
+    <div id="shadow" class="shadow2" v-if="seen2">
+      <div class="container2">
+        <label for="i1" class="l1">姓名</label>
+        <input type="text" name="" class="i1" v-model="n">
+
+        <label for="i1" class="l1">地址</label>
+        <input type="text" name="" class="i1" v-model="a">
+        <label for="i1" class="l1">邮编</label>
+        <input type="text" name="" class="i1" v-model="y">
+        <div class="ti">
+          <button class="idiot o1" @click="b(index)">保存</button>
+          <button class="idiot o11" @click="d">取消</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+
+      data: {
+        img: "arrow.png",
+        y: '',
+        a: "",
+        n: "",
+        seen: true,
+        message: "",
+        list: [{
+            date: '2020-02-12',
+            name: '王小虎',
+            adress: '上海宝山',
+            email: "20333",
+            seen: true,
+          },
+          {
+            date: '2020-02-22',
+            name: '王大虎',
+            adress: '苏州平江',
+            email: "20333",
+            seen: true,
+
+          },
+          {
+            date: '2020-02-03',
+            name: '陈晨',
+            adress: '上海金普陀10086号',
+            email: "20333",
+            seen: true,
+
+          },
+          {
+            date: '2020-02-04',
+            name: '张海',
+            adress: '安庆大观区',
+            email: "20333",
+            seen: true,
+
+          },
+          {
+            date: '2020-02-05',
+            name: '宁浩',
+            adress: '北京昌平',
+            email: "20333",
+            seen: true,
+
+          },
+          {
+            date: '2020-02-06',
+            name: '王浩',
+            adress: '常州金坛家园天宇人家',
+            email: "20333",
+            seen: true,
+
+          }
+        ],
+        seen2: false,
+        num: 0
+      },
+      methods: {
+        // message indexOf seen forEach
+        se() {
+          let that = this;
+          this.list.forEach(function (item) {
+            if (item.name.indexOf(that.message) == -1) {
+              console.log(that.message)
+              item.seen = false
+
+            } else {
+              item.seen = true
+            }
+          })
+        },
+        del(index) {
+          this.list.splice(index, 1)
+        },
+        alert(item, index) {
+          // seen index
+          this.seen2 = true;
+          this.a = item.adress;
+          this.y = item.email;
+          this.n = item.name;
+          this.index = index;
+        },
+        d() {
+          this.seen2 = false;
+        },
+        b() {
+          this.list[this.index].name = this.n;
+          this.list[this.index].adress = this.a;
+          this.list[this.index].email = this.y;
+
+          this.seen2 = false;
+        },
+        imgClick() {
+
+          this.num++;
+          if (this.num == 2) {
+            this.num = 0;
+            this.img = "arrow-up.png";
+            this.list.sort(function (a, b) {
+              return parseInt(a.date.replace(/-/g, "")) - parseInt(b.date.replace(/-/g, ""))
+            })
+          } else {
+            this.img = "arrow-down.png"
+            this.list.sort(function (a, b) {
+              return parseInt(b.date.replace(/-/g, "")) - parseInt(a.date.replace(/-/g, ""))
+            })
+          }
+        }
+
+      },
+
+    });
+  </script>
+</body>
+
+</html>

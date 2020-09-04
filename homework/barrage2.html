@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 1000px;
+      height: 666px;
+      margin: 0 auto;
+      display: flex;
+      /* background: red; */
+      flex-direction: column;
+      box-shadow: 0 0 8px #e5e9ef;
+      border: 1px solid #333;
+
+      overflow: hidden;
+
+    }
+
+    .box1 {
+      width: 1000px;
+      height: 636px;
+      position: relative;
+      background-color: #333;
+    }
+
+    .box2 {
+      width: 1000px;
+      display: flex;
+      height: 30px;
+      flex: 1;
+      line-height: 30px;
+      text-align: center;
+      flex-direction: row;
+      /* background-color: green; */
+      border: 1px solid #333;
+      border-right: none;
+      border-left: none;
+      /* padding: 0 12px 0 20px; */
+      box-shadow: 0 0 8px #e5e9ef;
+      border-bottom: none;
+    }
+
+    .now {
+      width: 238px;
+    }
+
+    .after {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .in11 {
+      width: 62px;
+      border-radius: 79px;
+      user-select: none;
+      outline: 0;
+
+      /* flex: 1; */
+      /* margin-right: 30px; */
+    }
+
+    .in1 {
+      padding-left: 10px;
+      user-select: none;
+      outline: 0;
+      flex: 1;
+      border-radius: 79px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box1">
+      <video src="guniang.mkv" width="100%" height="100%" autoplay controls loop></video>
+    </div>
+    <div class="box2">
+      <div class="now">当前观看人数:NaN,NaN条弹幕</div>
+      <div class="after">
+        <input type="text" class="in1" name="" id="" value="" placeholder="请输入弹幕">
+        <input type="submit" class="in11" value="发送弹幕">
+      </div>
+    </div>
+  </div>
+  <script>
+    // box2 in1 in11
+    let box1 = document.querySelector(".box1");
+    let in1 = document.querySelector(".in1");
+    let in11 = document.querySelector(".in11");
+    in11.addEventListener("click", function () {
+      if (in1.value.length != 0) {
+        let div1 = document.createElement("div");
+        div1.innerHTML = in1.value;
+        let sj = Math.random() * 615 + 'px';
+        let color = ['red', 'yellow', 'orange', 'pruple', 'gold', 'orange', 'aqua'];
+        let sj2 = parseInt(Math.random() * color.length - 1);
+        console.log(sj2)
+        let m = color[sj2];
+
+        div1.style = " position:absolute;left:1000px;top:" + sj + ";border:1px solid " + m + ';user-selected:none' +
+          ';color:' + m;
+        box1.appendChild(div1);
+        let timer = setInterval(function () {
+          div1.style.left = parseInt(div1.style.left) - 6 + 'px';
+          if (parseInt(div1.style.left) < 0) {
+            div1.remove();
+          }
+
+        }, 27)
+      }
+      // in1.value = ''
+    })
+    in1.addEventListener("keyup", function (e) {
+      if (e.key == 'Enter' && in1.value.length != 0) {
+        let div1 = document.createElement("div");
+        div1.innerHTML = in1.value;
+        let sj = Math.random() * 615 + 'px';
+        let color = ['red', 'yellow', 'orange', 'pruple', 'gold', 'orange', 'aqua'];
+        let sj2 = parseInt(Math.random() * color.length - 1);
+        console.log(sj2)
+        let m = color[sj2];
+
+        div1.style = " position:absolute;left:1000px;top:" + sj + ";border:1px solid " + m + ';user-selected:none' +
+          ';color:' + m;
+        box1.appendChild(div1);
+        let timer = setInterval(function () {
+          div1.style.left = parseInt(div1.style.left) - 6 + 'px';
+          if (parseInt(div1.style.left) < 0) {
+            div1.remove();
+          }
+
+        }, 27)
+      }
+      // in1.value = ''
+    })
+  </script>
+</body>
+
+</html>

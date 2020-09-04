@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // function an() {
+    //   console.log(a);
+    //   var a = 10;
+    //   console.log(a);
+    // }
+    // an()
+    var shape = {
+      radius: 10,
+
+      a() {
+        return this.radius * 2;
+      },
+      a1: () => Math.PI * 2 * this.radius
+      // let that = this
+
+
+    }
+    console.log(shape.a())
+    console.log(shape.a1())
+  </script>
+</body>
+
+</html>
